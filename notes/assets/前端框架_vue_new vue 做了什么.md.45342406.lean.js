@@ -1,0 +1,1 @@
+import{o as n,c as s,a}from"./app.57353960.js";const t='{"title":"new Vue 的时候做了什么","description":"","frontmatter":{},"headers":[{"level":2,"title":"包装函数","slug":"包装函数"}],"relativePath":"前端框架/vue/new vue 做了什么.md","lastUpdated":1615824181933}',p={},o=a('',10);p.render=function(a,t,p,e,c,u){return n(),s("div",null,[o])};export default p;export{t as __pageData};

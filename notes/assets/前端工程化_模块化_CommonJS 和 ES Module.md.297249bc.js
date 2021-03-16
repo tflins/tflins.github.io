@@ -1,0 +1,1 @@
+import{o as t,c as e}from"./app.57353960.js";const o='{"title":"","description":"","frontmatter":{},"relativePath":"前端工程化/模块化/CommonJS 和 ES Module.md","lastUpdated":1615824871159}',r={};r.render=function(o,r,a,d,n,i){return t(),e("div")};export default r;export{o as __pageData};
