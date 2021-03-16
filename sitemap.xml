@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://tflin.com/about/index.html</loc>
+    
+    <lastmod>2021-03-16T05:26:14.574Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://tflin.com/works/index.html</loc>
     
     <lastmod>2021-03-16T02:13:37.578Z</lastmod>
@@ -26,13 +33,6 @@
     <loc>https://tflin.com/categories/index.html</loc>
     
     <lastmod>2021-03-16T02:13:16.473Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://tflin.com/about/index.html</loc>
-    
-    <lastmod>2021-03-16T02:12:56.555Z</lastmod>
     
   </url>
   
