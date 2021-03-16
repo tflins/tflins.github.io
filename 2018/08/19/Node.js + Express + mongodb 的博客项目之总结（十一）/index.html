@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html  lang="zh">
+<head>
+    <meta charset="utf-8" />
+
+<meta name="generator" content="Hexo 3.9.0" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+<title>Node.js + Express + mongodb 的博客项目之总结（十一） - 枫林晚记</title>
+
+
+    <meta name="description" content="前言之前一直想做一个前后端都完整的个人项目，但由于当时还在学校进行实训2的学习，就一直没有多少时间着手，所以就在暑假的时候将这个项目做了起来。技术栈上采用 Node.js + Express + mongodb，经过了断断续续的开发，如今完成了这个项目的大部分基本功能，今天抽个时间写了个总结。项目的代码我全程托管到 GitHub 上，项目地址 https://github.com/tflins/n">
+<meta name="keywords" content="Node.js,实战,Express">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Node.js + Express + mongodb 的博客项目之总结（十一）">
+<meta property="og:url" content="https://tflin.com/2018/08/19/Node.js + Express + mongodb 的博客项目之总结（十一）/index.html">
+<meta property="og:site_name" content="枫林晚记">
+<meta property="og:description" content="前言之前一直想做一个前后端都完整的个人项目，但由于当时还在学校进行实训2的学习，就一直没有多少时间着手，所以就在暑假的时候将这个项目做了起来。技术栈上采用 Node.js + Express + mongodb，经过了断断续续的开发，如今完成了这个项目的大部分基本功能，今天抽个时间写了个总结。项目的代码我全程托管到 GitHub 上，项目地址 https://github.com/tflins/n">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://tflin.com/images/og_image.png">
+<meta property="og:updated_time" content="2021-03-16T02:12:53.059Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Node.js + Express + mongodb 的博客项目之总结（十一）">
+<meta name="twitter:description" content="前言之前一直想做一个前后端都完整的个人项目，但由于当时还在学校进行实训2的学习，就一直没有多少时间着手，所以就在暑假的时候将这个项目做了起来。技术栈上采用 Node.js + Express + mongodb，经过了断断续续的开发，如今完成了这个项目的大部分基本功能，今天抽个时间写了个总结。项目的代码我全程托管到 GitHub 上，项目地址 https://github.com/tflins/n">
+<meta name="twitter:image" content="https://tflin.com/images/og_image.png">
+
+
+
+
+
+
+
+<link rel="icon" href="/images/favicon.svg">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.4.1/css/all.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css">
+
+
+    
+    
+    
+    <style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+    
+
+    
+    
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+    
+
+    
+    
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+
+    
+    
+    
+    
+
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+<link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+    
+    
+    
+
+
+<link rel="stylesheet" href="/css/style.css">
+    <meta name="referrer" content="no-referrer" />
+</head>
+<body class="is-3-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img src="/images/logo.png" alt="Node.js + Express + mongodb 的博客项目之总结（十一）" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item"
+                target="_self"
+                href="/">首页</a>
+                
+                <a class="navbar-item"
+                target="_self"
+                href="/archives">归档</a>
+                
+                <a class="navbar-item"
+                target="_self"
+                href="/categories">分类</a>
+                
+                <a class="navbar-item"
+                target="_self"
+                href="/tags">标签</a>
+                
+                <a class="navbar-item"
+                target="_self"
+                href="/chitchat">闲言</a>
+                
+                <a class="navbar-item"
+                target="_blank"
+                href="/resume">简历</a>
+                
+                <a class="navbar-item"
+                target="_self"
+                href="/about">关于</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                    
+                    
+                    <a class="navbar-item" target="_blank" title="Download on GitHub" href="https://github.com/tflins">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                    
+                
+                
+                <a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;">
+                    <i class="fas fa-list-ul"></i>
+                </a>
+                
+                
+                <a class="navbar-item search" title="搜索" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8-tablet is-8-desktop is-9-widescreen has-order-2 column-main"><div class="card">
+    
+    <div class="card-content article ">
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <i class="fas fa-angle-double-right"></i>Node.js + Express + mongodb 的博客项目之总结（十一）
+            
+        </h1>
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2018-08-19T15:00:51.000Z"><i class="far fa-calendar-alt">&nbsp;</i>2018-08-19</time>
+                
+                <time class="level-item has-text-grey is-hidden-mobile" datetime="2021-03-16T02:12:53.059Z"><i class="far fa-calendar-check">&nbsp;</i>2021-03-16</time>
+                
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/后端/">后端</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/后端/Node-js/">Node.js</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/后端/Node-js/博客实战系列/">博客实战系列</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    8 分钟 读完 (大约 1204 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <div class="content">
+            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>之前一直想做一个前后端都完整的个人项目，但由于当时还在学校进行实训2的学习，就一直没有多少时间着手，所以就在暑假的时候将这个项目做了起来。技术栈上采用 Node.js + Express + mongodb，经过了断断续续的开发，如今完成了这个项目的大部分基本功能，今天抽个时间写了个总结。项目的代码我全程托管到 GitHub 上，项目地址 <a href="https://github.com/tflins/node_blog" target="_blank" rel="noopener">https://github.com/tflins/node_blog</a></p>
+<a id="more"></a>
+<hr>
+<h2 id="难点"><a href="#难点" class="headerlink" title="难点"></a>难点</h2><ul>
+<li><strong>将过程整理成博客</strong></li>
+</ul>
+<blockquote>
+<p>整个项目，最耗费我时间的，不是写代码开发的过程，而是我将其过程整理成博客文章。有时候真的有种说不出的感觉，在写博客的过程中，你需要咬文爵字，思考着怎么样来写，怎么样来描述这个过程，什么东西是需要重点提及的，什么东西是需要一笔带过的······ 这些东西都需要自己去思考，去琢磨，所以说写博客真的很锻炼人(笑哭)。</p>
+</blockquote>
+<ul>
+<li><strong>Node.js 的异步处理</strong></li>
+</ul>
+<blockquote>
+<p>整个开发过程，我印象最深的就是 Node.js 的层层回调了（传说中的回调地狱）。最主要的是体会到了异步开发的思想，不要尝试使用同步的思维去写 Node.js，当然也可以，但会影响性能。就比如 mongooes 模块所提供的数据库驱动，它并没有提供相关的同步方法，全是异步方法。如果使用同步的思维去写异步，就会出现你在某些地方需要 I/O 操作返回的值的时候，得不到需要的值，因为它会将 I/O 操作放在执行队列的后面。所以，就需要不断的使用回调函数，一个两个三个还好，但随着功能需求的增加，就会形成传说中的回调地狱。所以，为了追求更加优雅的代码，异步处理也有不同的写法，在本项目中，最常用的是 ES2016 中的 <a href="http://es6.ruanyifeng.com/#docs/promise" target="_blank" rel="noopener">promise</a>。</p>
+</blockquote>
+<ul>
+<li><strong>app.use</strong></li>
+</ul>
+<blockquote>
+<p>本项目所采用的 WEB 框架 Express 中，最常用的就是 app.use() 了。app.use 的官方文档原文是：Mounts the specified middleware function or functions at the specified path: the middleware function is executed when the base of the requested path matches path. 大概意思就是就是把特定的中间件加载到特定的请求路径下面。当一个请求来的时候，会依次被这些中间件处理，app.use顺序执行，使用 next() 继续。app.use注册的中间件，如果path参数为空，则默认为”/”，而path为”/”的中间件默认匹配所有的请求。</p>
+</blockquote>
+<ul>
+<li><strong>cookie 的使用</strong></li>
+</ul>
+<blockquote>
+<p>在需要保持用户登录的时候就需要 cookie 了，在我的另一篇博客里面介绍有关于 cookie 在本项目中的使用 –&gt; <a href="http://tflin.com/2018/07/27/Node.js%20+%20Express%20+%20mongodb%20%E7%9A%84%E5%8D%9A%E5%AE%A2%E9%A1%B9%E7%9B%AE%E4%B9%8B%E4%BF%9D%E6%8C%81%E7%94%A8%E6%88%B7%E7%99%BB%E5%BD%95%EF%BC%8C%E5%8C%BA%E5%88%86%E7%AE%A1%E7%90%86%E5%91%98%E8%B4%A6%E6%88%B7%EF%BC%8C%E5%8F%8A%E7%94%A8%E6%88%B7%E7%99%BB%E5%87%BA%EF%BC%88%E5%9B%9B%EF%BC%89/">Node.js + Express + mongodb 的博客项目之保持用户登录，区分管理员账户，及用户登出（四）</a>。</p>
+</blockquote>
+<ul>
+<li><strong>分页模块的封装</strong></li>
+</ul>
+<blockquote>
+<p>在这个项目中，需要多次用到分页查询数据的功能，所以我就将他给封装成一个模块，以便多次使用。但在这过程中却是略微痛苦的，因为有时候不同的页面它所需要的分页数据是不同的，所以我就得不断的完善分页处理模块的参数及方法，以实现不同的需求，参数一多，我就觉得不够优雅，所以就以对象的形式作为参数传递过去。</p>
+</blockquote>
+<hr>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>整个过程真的是挺锻炼人的，学习的时候，不断的输入新的知识，然后将学到的知识转换成自己的再以另一种形式输出出去。就比如，我将自己所学的，整理成相应的博客。这样一来，就有了所谓的 <strong>输入</strong> –&gt; <strong>输出</strong> 的学习模式，很不错。<br>话也不多说了，准大四了，希望未来的自己能有更好的发展吧！</p>
+
+        </div>
+        
+            <ul class="post-copyright">
+                <li><strong>本文标题：</strong><a href="https://tflin.com/2018/08/19/Node.js + Express + mongodb 的博客项目之总结（十一）/">Node.js + Express + mongodb 的博客项目之总结（十一）</a></li>
+                <li><strong>本文作者：</strong><a href="https://tflin.com">tflin</a></li>
+                <li><strong>本文链接：</strong><a href="https://tflin.com/2018/08/19/Node.js + Express + mongodb 的博客项目之总结（十一）/">https://tflin.com/2018/08/19/Node.js + Express + mongodb 的博客项目之总结（十一）/</a></li>
+                <li><strong>发布时间：</strong>2018-08-19</li>
+                <li><strong>版权声明：</strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！</li>
+            </ul>
+        
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <i class="fas fa-tags has-text-grey"></i>&nbsp;
+                    <a class="has-link-grey -link" href="/tags/Express/">Express</a>,&nbsp;<a class="has-link-grey -link" href="/tags/Node-js/">Node.js</a>,&nbsp;<a class="has-link-grey -link" href="/tags/实战/">实战</a>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2018/08/25/谈谈原生 Ajax/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">谈谈原生 Ajax</span>
+            </a>
+        </div>
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2018/08/17/Node.js + Express + mongodb 的博客项目之评论系统（十）/">
+                <span class="level-item">Node.js + Express + mongodb 的博客项目之评论系统（十）</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
+
+
+</div>
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left is-sticky">
+    
+        
+ <div class="card widget column-left is-sticky" id="toc">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                目录
+            </h3>
+            <ul class="menu-list"><li>
+        <a class="is-flex" href="#前言">
+        <span class="has-mr-6">1</span>
+        <span>前言</span>
+        </a></li><li>
+        <a class="is-flex" href="#难点">
+        <span class="has-mr-6">2</span>
+        <span>难点</span>
+        </a></li><li>
+        <a class="is-flex" href="#结语">
+        <span class="has-mr-6">3</span>
+        <span>结语</span>
+        </a></li></ul>
+        </div>
+    </div>
+</div>
+
+    
+    
+        <div class="column-right-shadow is-hidden-widescreen ">
+        
+        </div>
+    
+</div>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img src="/images/logo.png" alt="Node.js + Express + mongodb 的博客项目之总结（十一）" height="28">
+                
+                </a>
+                <p class="is-size-7">
+                &copy; 2021 tflin&nbsp;
+                Powered by <a href="http://tflin.com/" target="_blank">枫林晚记</a>
+                
+                </p>
+                <p class="is-size-7">本站共计48.7k字</p>
+            </div>
+            <div class="level-end">
+            
+                <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
+                
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Creative Commons" href="https://creativecommons.org/">
+                        
+                        <i class="fab fa-creative-commons"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/">
+                        
+                        <i class="fab fa-creative-commons-by"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Download on GitHub" href="https://github.com/tflins">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                </p>
+                
+                </div>
+            
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="https://s9.cnzz.com/z_stat.php?id=1279475949&web_id=1279475949"></script>
+    <style>
+        a[title="站长统计"] {
+            display: none;
+        }
+    </style>
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("zh-CN");</script>
+
+<script>
+var IcarusThemeSettings = {
+    article: {
+        highlight: {
+            clipboard: true,
+            fold: ''
+        }
+    }
+};
+</script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+
+
+
+    
+    
+    
+    <script src="/js/animation.js"></script>
+    
+
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+    <script src="/js/gallery.js" defer></script>
+    
+
+    
+    
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+
+    
+    
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+});
+</script>
+
+    
+    
+
+<a id="back-to-top" title="回到顶端" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+
+
+<script src="/js/main.js" defer></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="想要查找什么..." />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"right","width":150,"height":300,"hOffset":40},"mobile":{"show":false}});</script></body>
+</html>
