@@ -1,0 +1,1 @@
+import{o as n,c as a,a as s}from"./app.8c8a1ac2.js";const p='{"title":"早期的模块化","description":"","frontmatter":{},"relativePath":"前端工程化/模块化/早期的模块化.md","lastUpdated":1615827420160}',t={},o=s('',8);t.render=function(s,p,t,e,c,i){return n(),a("div",null,[o])};export default t;export{p as __pageData};

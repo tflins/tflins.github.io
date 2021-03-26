@@ -1,1 +1,0 @@
-import{o as s,c as a,a as n}from"./app.57353960.js";const p='{"title":"四则运算","description":"","frontmatter":{},"relativePath":"前端基础/JavaScript/数据类型/四则运算.md","lastUpdated":1615518465090}',e={},t=n('',4);e.render=function(n,p,e,o,c,r){return s(),a("div",null,[t])};export default e;export{p as __pageData};
