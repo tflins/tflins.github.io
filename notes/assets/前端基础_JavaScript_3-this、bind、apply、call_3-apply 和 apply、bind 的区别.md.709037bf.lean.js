@@ -1,0 +1,1 @@
+import{o as n,c as a,a as s}from"./app.8c8a1ac2.js";const p='{"title":"bind 和 apply、call 的区别","description":"","frontmatter":{},"relativePath":"前端基础/JavaScript/3-this、bind、apply、call/3-apply 和 apply、bind 的区别.md","lastUpdated":1616666203783}',t={},o=s('',6);t.render=function(s,p,t,c,l,e){return n(),a("div",null,[o])};export default t;export{p as __pageData};
