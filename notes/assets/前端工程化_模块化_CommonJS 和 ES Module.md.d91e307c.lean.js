@@ -1,1 +1,0 @@
-import{o as t,c as e}from"./app.8c8a1ac2.js";const r='{"title":"","description":"","frontmatter":{},"relativePath":"前端基础/CSS/BFC,IFC.md","lastUpdated":1615518465077}',a={};a.render=function(r,a,o,d,i,n){return t(),e("div")};export default a;export{r as __pageData};
