@@ -1,0 +1,36 @@
+import{_ as p,r as o,c as e,a as s,b as t,d as n,e as c,o as u}from"./app.462ff3e2.js";const T='{"title":"Message \u6D88\u606F","description":"","frontmatter":{},"headers":[{"level":2,"title":"\u57FA\u672C\u7528\u6CD5","slug":"\u57FA\u672C\u7528\u6CD5"},{"level":2,"title":"\u663E\u793A\u65F6\u95F4","slug":"\u663E\u793A\u65F6\u95F4"}],"relativePath":"component/message.md","lastUpdated":1619576333507}',l={},i=s("h1",{id:"message-\u6D88\u606F",tabindex:"-1"},[n("Message \u6D88\u606F "),s("a",{class:"header-anchor",href:"#message-\u6D88\u606F","aria-hidden":"true"},"#")],-1),k=s("p",null,"\u6D88\u606F\u7EC4\u4EF6\u63D0\u4F9B\u4E0D\u540C\u7C7B\u578B\u7684\u6D88\u606F\u901A\u77E5\uFF0C\u4EE5\u6B64\u6765\u63D0\u793A\u7528\u6237\u3002",-1),r=s("h2",{id:"\u57FA\u672C\u7528\u6CD5",tabindex:"-1"},[n("\u57FA\u672C\u7528\u6CD5 "),s("a",{class:"header-anchor",href:"#\u57FA\u672C\u7528\u6CD5","aria-hidden":"true"},"#")],-1),d=s("p",null,[n("\u4ECE "),s("code",null,"sakura-ui"),n(" \u4E2D\u5F15\u5165 "),s("code",null,"Message"),n(" \u7EC4\u4EF6\uFF0C\u8C03\u7528\u76F8\u5E94\u7684\u65B9\u6CD5\u4F7F\u7528\u3002")],-1),g={class:"docs-preview-part"},_=c(`<div class="language-vue"><pre><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>message-demo<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>sk-button</span> <span class="token attr-name">@click</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>showMessage<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>\u6D88\u606F<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>sk-button</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>template</span><span class="token punctuation">&gt;</span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">&gt;</span></span><span class="token script"><span class="token language-javascript">
+<span class="token keyword">import</span> <span class="token punctuation">{</span> Message <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&#39;sakura3&#39;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
+  name<span class="token operator">:</span> <span class="token string">&#39;MessageDemo&#39;</span><span class="token punctuation">,</span>
+
+  <span class="token function">setup</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> <span class="token function-variable function">showMessage1</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+      Message<span class="token punctuation">.</span><span class="token function">success</span><span class="token punctuation">(</span><span class="token string">&#39;\u8FD9\u662F\u4E00\u6761\u6210\u529F\u7C7B\u578B\u7684\u63D0\u793A&#39;</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">const</span> <span class="token function-variable function">showMessage2</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+      Message<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token string">&#39;\u8FD9\u662F\u4E00\u6761\u9519\u8BEF\u7C7B\u578B\u7684\u63D0\u793A&#39;</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">const</span> <span class="token function-variable function">showMessage3</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+      Message<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">&#39;\u8FD9\u662F\u4E00\u6761\u63D0\u793A\u7C7B\u578B\u7684\u63D0\u793A&#39;</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">const</span> <span class="token function-variable function">showMessage4</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+      Message<span class="token punctuation">.</span><span class="token function">warning</span><span class="token punctuation">(</span><span class="token string">&#39;\u8FD9\u662F\u4E00\u6761\u8B66\u544A\u7C7B\u578B\u7684\u63D0\u793A&#39;</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">return</span> <span class="token punctuation">{</span>
+      showMessage1<span class="token punctuation">,</span>
+      showMessage2<span class="token punctuation">,</span>
+      showMessage3<span class="token punctuation">,</span>
+      showMessage4
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+</code></pre></div><h2 id="\u663E\u793A\u65F6\u95F4" tabindex="-1">\u663E\u793A\u65F6\u95F4 <a class="header-anchor" href="#\u663E\u793A\u65F6\u95F4" aria-hidden="true">#</a></h2><p>\u901A\u8FC7\u8BBE\u7F6E <code>duration</code> \u5C5E\u6027\uFF0C\u53EF\u4EE5\u63A7\u5236\u6D88\u606F\u7EC4\u4EF6\u7684\u663E\u793A\u65F6\u95F4\u3002</p>`,3),h={class:"docs-preview-part"};function f(m,v,w,M,b,y){const a=o("message-demo");return u(),e("div",null,[i,k,r,d,s("div",g,[t(a)]),_,s("div",h,[t(a,{"demo-id":"2"})])])}var q=p(l,[["render",f]]);export{T as __pageData,q as default};
